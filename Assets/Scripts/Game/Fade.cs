@@ -100,9 +100,12 @@ public class Fade : MonoBehaviour
             currentAlpha = 255;
         }
         currentAlpha = a;
-        Color tmp = renderer.color;
-        tmp.a = (currentAlpha / 255);
-        renderer.color = tmp;
+        if (renderer != null)
+        {
+            Color tmp = renderer.color;
+            tmp.a = (currentAlpha / 255);
+            renderer.color = tmp;
+        }
     }
 
     void setAlpha(int a)

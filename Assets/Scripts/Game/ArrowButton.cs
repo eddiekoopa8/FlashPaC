@@ -10,6 +10,7 @@ public class ArrowButton : MonoBehaviour
     bool doAction = true;
     public Transform TargetPoint;
     int speedf = 17;
+    public string TooltipText = "To next area.";
 
     void Start()
     {
@@ -32,12 +33,25 @@ public class ArrowButton : MonoBehaviour
 
     public void OnMouseDown()
     {
+        if (MenuOverlay.IsActive()) return;
         if (Fade.IsIn())
         {
             Debug.Log("goto " + TargetPoint.name);
             Fade.In(speedf);
             CameraObj.SetPos(TargetPoint.position);
             doAction = true;
+            OnMouseExit();
         }
+    }
+
+    public void OnMouseEnter()
+    {
+        if (MenuOverlay.IsActive()) return;
+        Tooltip.Set(TooltipText);
+    }
+
+    public void OnMouseExit()
+    {
+        Tooltip.Clear();
     }
 }
