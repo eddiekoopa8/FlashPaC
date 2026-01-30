@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,11 @@ public class Inventory : MonoBehaviour
     {
         return active;
     }
+    
+    bool canDo()
+    {
+        return !PauseScreen.IsActive();
+    }
 
     // Update is called once per frame
     void Update()
@@ -55,7 +61,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && canDo())
         {
             setActive(!active);
         }

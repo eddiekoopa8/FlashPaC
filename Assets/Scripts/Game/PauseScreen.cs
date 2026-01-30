@@ -17,7 +17,7 @@ public class PauseScreen : MonoBehaviour
     void Start()
     {
         activePos = new Vector3(0, 0, 0);
-        inactivePos = new Vector3(0, -350, 0);
+        inactivePos = new Vector3(0, 350, 0);
         if (active)
         {
             transform.localPosition = activePos;
@@ -33,11 +33,24 @@ public class PauseScreen : MonoBehaviour
         active = flag;
         changeAnim = true;
         MenuOverlay.SetActive(flag);
+        if (active)
+        {
+            Fade.Out(3);
+        }
+        else
+        {
+            Fade.In(3);
+        }
     }
 
     bool isActive()
     {
         return active;
+    }
+    
+    bool canDo()
+    {
+        return !Inventory.IsActive();
     }
 
     // Update is called once per frame
@@ -55,7 +68,7 @@ public class PauseScreen : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.P) && canDo())
         {
             setActive(!active);
         }
