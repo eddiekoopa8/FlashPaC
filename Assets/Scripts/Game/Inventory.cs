@@ -15,8 +15,11 @@ public class Inventory : MonoBehaviour
     Vector3 activePos;
     Vector3 inactivePos;
 
+    List<InventoryContainer> containers;
+
     void Start()
     {
+        containers = new List<InventoryContainer>();
         activePos = new Vector3(0, 0, 0);
         inactivePos = new Vector3(0, -350, 0);
         if (active)
