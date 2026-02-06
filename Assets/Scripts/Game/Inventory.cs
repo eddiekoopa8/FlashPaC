@@ -1,11 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Inventory : MonoBehaviour
 {
+    public enum Type
+    {
+        Dummy = 0,
+        Apple,
+        Pencil,
+        Max
+    };
+
+    public static string[] TypeDescriptions = {
+        "???",
+        "Apple",
+        "Pencil",
+        "???",
+    };
+
+    static int MAX_TYPE = (int)Type.Max;
+
     // Start is called before the first frame update
     bool active = false;
     bool changeAnim = false;
@@ -30,6 +48,11 @@ public class Inventory : MonoBehaviour
         {
             transform.localPosition = inactivePos;
         }
+
+        for (int i = 0; i < MAX_TYPE; i++)
+        {
+            containers.Add(new InventoryContainer((Type)i));
+        }
     }
     
     void setActive(bool flag)
@@ -47,6 +70,19 @@ public class Inventory : MonoBehaviour
     bool canDo()
     {
         return !PauseScreen.IsActive();
+    }
+
+    bool add(InventoryItem item)
+    {
+        for (int i = 0; i < MAX_TYPE; i++)
+        {
+            if (containers[i].containerType == item.InventoryType)
+            {
+                containers[i].add(item);
+            }
+        }
+
+        return false;
     }
 
     // Update is called once per frame
@@ -100,5 +136,10 @@ public class Inventory : MonoBehaviour
     public static bool IsActive()
     {
         return getInst().isActive();
+    }
+
+    public static bool Add(InventoryItem item)
+    {
+        return getInst().add(item);
     }
 }
