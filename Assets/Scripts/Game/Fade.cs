@@ -15,6 +15,8 @@ public class Fade : MonoBehaviour
     float currentAlpha = 0.0f;
     float currentSpeed = 1f;
 
+    public Transform StartingPosition = null;
+
     void fadeIn(float speed = 2)
     {
         currentSpeed = speed;
@@ -56,6 +58,11 @@ public class Fade : MonoBehaviour
         if (FadeInOnStart)
         {
             fadeIn(FadeInOnStartSpeed);
+        }
+
+        if (StartingPosition != null)
+        {
+            CameraObj.SetPos(StartingPosition.transform.position);
         }
     }
 

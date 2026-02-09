@@ -2020,6 +2020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeInOnStart: 1
   FadeInOnStartSpeed: 5
+  StartingPosition: {fileID: 1557268342}
 --- !u!1 &1069225875
 GameObject:
   m_ObjectHideFlags: 0
