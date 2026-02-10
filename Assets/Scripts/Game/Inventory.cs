@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -82,6 +83,8 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        RefreshText();
+
         return false;
     }
 
@@ -136,6 +139,11 @@ public class Inventory : MonoBehaviour
     public static bool IsActive()
     {
         return getInst().isActive();
+    }
+
+    public void RefreshText()
+    {
+        GameObject.Find("InventInfo").GetComponent<TMP_Text>().text = " " + containers[1].Count + " apples.";
     }
 
     public static bool Add(InventoryItem item)
