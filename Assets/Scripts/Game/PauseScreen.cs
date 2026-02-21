@@ -35,11 +35,11 @@ public class PauseScreen : MonoBehaviour
         MenuOverlay.SetActive(flag);
         if (active)
         {
-            Fade.Out(3);
+            //Fade.Out(3);
         }
         else
         {
-            Fade.In(3);
+            //Fade.In(3);
         }
     }
 
